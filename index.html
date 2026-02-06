@@ -3,128 +3,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine 💘</title>
+<title>Zootopia Valentine 💘</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
 body{
-  margin:0;height:100vh;font-family:'Pacifico',cursive;
-  background:url('https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fi.pinimg.com%2F736x%2Fd4%2F41%2Fdd%2Fd441dd11ec8be04030aba73501cb5914.jpg') center/cover no-repeat;
-  display:flex;align-items:center;justify-content:center;color:white;text-align:center;overflow:hidden;
+  margin:0;
+  height:100vh;
+  font-family:'Pacifico',cursive;
+  background:url("https://i.pinimg.com/736x/d4/41/dd/d441dd11ec8be04030aba73501cb5914.jpg")
+    center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-align:center;
+  overflow:hidden;
 }
+
 .card{
-  background:rgba(0,0,0,0.55);padding:30px;border-radius:20px;max-width:90%;
+  background:rgba(0,0,0,0.6);
+  padding:35px;
+  border-radius:25px;
+  max-width:90%;
+  box-shadow:0 0 25px rgba(255,255,255,0.2);
 }
+
+h1{
+  font-size:2.2rem;
+}
+
+p{
+  font-size:1.2rem;
+}
+
 button{
-  font-size:1.2rem;padding:12px 25px;margin:10px;border:none;border-radius:30px;cursor:pointer;
+  font-size:1.2rem;
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.2s;
 }
-#yes{background:#ff4d6d;color:white;}
-#no{background:#ccc;position:absolute;}
-.hidden{display:none;}
-.heart{position:absolute;font-size:20px;animation:fall 5s linear infinite;}
-@keyframes fall{0%{top:-10%}100%{top:110%}}
-.puzzle-btn{background:#ffcc00;color:#000;font-weight:bold;}
-.confetti{position:absolute;font-size:24px;animation:confettiFall 4s linear forwards;}
-@keyframes confettiFall{0%{top:-10%;transform:rotate(0deg);}100%{top:110%;transform:rotate(360deg);}}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#yes:hover{
+  transform:scale(1.1);
+}
+
+#no{
+  background:#ccc;
+  position:absolute;
+}
+
+.hidden{
+  display:none;
+}
+
+.heart{
+  position:absolute;
+  font-size:28px;
+  animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+  0%{top:-10%;}
+  100%{top:110%;}
+}
+
+.signature{
+  margin-top:25px;
+  font-size:1rem;
+  opacity:0.8;
+}
 </style>
 </head>
+
 <body>
 
-<div class="card" id="card">
-  <h1>💘 Will you be my Valentine, Silmiya? 💘</h1>
-  <p>“You know you love someone when you can’t explain why without saying their name.” 🦊🐰</p>
-  <button id="yes">Yes 💖</button>
+<div class="card">
+  <h1>🦊🐰 Silmiya, will you be my Valentine? 💘</h1>
+
+  <p>
+    “உன் செய்கை ஒவ்வொன்றும்
+என் காதல் அர்த்தங்கள்
+நாள்தோறும் நான் சேர்க்கும் ஞாபக சின்னங்கள்.” 💖
+  </p>
+
+  <button id="yes">Yes 💞</button>
   <button id="no">No 🙈</button>
 
-  <div id="level2" class="hidden">
-    <h2>🎯 Level 2: Pick the right heart!</h2>
-    <p>Click the ❤️ that belongs to Judy!</p>
-    <button class="puzzle-btn">❤️</button>
-    <button class="puzzle-btn">💛</button>
-    <button class="puzzle-btn">💚</button>
-  </div>
-
-  <div id="level3" class="hidden">
-    <h2>🎉 Level 3: Surprise! 🎉</h2>
-    <p>Tap anywhere to shower confetti and reveal your special Valentine message!</p>
-  </div>
-
   <div id="love" class="hidden">
-    <h2>💌 Secret Love Letter 💌</h2>
-    <p>Silmiya, you’re my favorite smile and my forever Valentine 💖</p>
+    <h2>💞 Yay!!! I knew it 💞</h2>
+
+    <p>
+      💌 alagiii,I love u so much laddu papa 💖  
+      <br><br>
+      — With love, Maniiiiiiiii 🦊💕
+    </p>
   </div>
+
+  <p class="signature">
+    Made with 💖 by Mani
+  </p>
 </div>
 
 <audio id="sound" src="https://www.soundjay.com/human/kiss-01.mp3"></audio>
 
 <script>
-const no = document.getElementById('no');
-const yes = document.getElementById('yes');
-const love = document.getElementById('love');
-const level2 = document.getElementById('level2');
-const level3 = document.getElementById('level3');
-const card = document.getElementById('card');
-const sound = document.getElementById('sound');
+const no=document.getElementById('no');
+const yes=document.getElementById('yes');
+const love=document.getElementById('love');
+const sound=document.getElementById('sound');
 
-function escapeNo() {
-  no.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-  no.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+function escape(){
+  no.style.left=Math.random()*(window.innerWidth-120)+'px';
+  no.style.top=Math.random()*(window.innerHeight-120)+'px';
 }
-['mouseover','click','touchstart'].forEach(e=>no.addEventListener(e,escapeNo));
 
-// Level 1
-let yesPressCount = 0;
-const maxYesPress = 3;
+['mouseover','click','touchstart'].forEach(e =>
+  no.addEventListener(e, escape)
+);
 
-yes.onclick = () => {
-  if(yesPressCount >= maxYesPress) return;
-  yesPressCount++;
+yes.onclick=()=>{
   sound.play();
-
-  // Hearts animation
-  for(let i=0;i<30;i++){
-    let h = document.createElement('div');
-    h.className='heart';
-    h.innerHTML='💕';
-    h.style.left=Math.random()*100+'vw';
-    h.style.animationDuration=3+Math.random()*3+'s';
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  }
-
-  // Unlock level 2 after 3 presses
-  if(yesPressCount === maxYesPress){
-    yes.style.display = no.style.display = 'none';
-    level2.classList.remove('hidden');
-  }
-};
-
-// Level 2: Puzzle
-level2.querySelectorAll('.puzzle-btn').forEach(btn => {
-  btn.onclick = () => {
-    if(btn.innerText === '❤️'){
-      level2.classList.add('hidden');
-      level3.classList.remove('hidden');
-    } else {
-      alert('Oops! Try again 😅');
-    }
-  }
-});
-
-// Level 3: Confetti and final message
-level3.onclick = () => {
-  level3.classList.add('hidden');
   love.classList.remove('hidden');
 
-  // Confetti
-  for(let i=0;i<100;i++){
-    let c = document.createElement('div');
-    c.className='confetti';
-    c.innerHTML=['🎉','💖','💕','🌟'][Math.floor(Math.random()*4)];
-    c.style.left=Math.random()*100+'vw';
-    c.style.color=`hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration=(2+Math.random()*3)+'s';
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),5000);
+  yes.style.display="none";
+  no.style.display="none";
+
+  // heart rain effect
+  for(let i=0;i<35;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.innerHTML='💞';
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=3+Math.random()*3+'s';
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),6000);
   }
 };
 </script>
